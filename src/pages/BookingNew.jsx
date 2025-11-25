@@ -225,7 +225,7 @@ export default function BookingNew() {
         </button>
         <div>
           <h1 className="text-2xl md:text-3xl font-serif">Book a Service</h1>
-          <p className="text-gray-600 text-sm md:text-base">Schedule your appointment at GlowHaven</p>
+          <p className="text-gray-600 text-sm md:text-base">Schedule your appointment at GlowPrime</p>
         </div>
       </div>
 

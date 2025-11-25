@@ -1,4 +1,4 @@
-# GlowHaven - Frontend (Vite + React + Tailwind)
+# GlowPrime - Frontend (Vite + React + Tailwind)
 
 This is a simple starter frontend scaffold that reproduces the layout and pages from the screenshots you provided.
 

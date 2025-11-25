@@ -237,7 +237,7 @@
 //       )}
 //      {/* why us */}
 //        <section className="bg-white rounded-2xl p-8 md:p-12 border border-gray-200">
-//          <h2 className="text-2xl md:text-3xl font-serif text-center mb-8 text-gray-900">Why Choose GlowHaven</h2>
+//          <h2 className="text-2xl md:text-3xl font-serif text-center mb-8 text-gray-900">Why Choose GlowPrime</h2>
 //          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
 //            {[
 //              {icon:'✨', title:'Quality Products', text:'Natural, gentle and effective.'},
@@ -514,7 +514,7 @@ const Home = () => {
 
       {/* --- WHY US SECTION --- */}
        <section className="bg-gradient-to-br from-white to-gray-50 rounded-2xl p-8 md:p-12 border border-gray-100 shadow-sm">
-         <h2 className="text-2xl md:text-3xl font-serif text-center mb-10 text-gray-900">Why Choose GlowHaven</h2>
+         <h2 className="text-2xl md:text-3xl font-serif text-center mb-10 text-gray-900">Why Choose GlowPrime</h2>
          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
            {[
              {icon:'✨', title:'Quality Products', text:'Natural, gentle and effective ingredients.'},

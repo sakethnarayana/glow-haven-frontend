@@ -62,7 +62,7 @@
 //     <>
 //       <header className="border-b bg-white sticky top-0 z-40">
 //         <div className="max-w-6xl mx-auto px-4 md:px-6 py-4 flex items-center justify-between">
-//           <Link to="/" className="font-serif text-xl md:text-2xl hover:text-gray-700 transition-colors">GlowHaven</Link>
+//           <Link to="/" className="font-serif text-xl md:text-2xl hover:text-gray-700 transition-colors">GlowPrime</Link>
 
 //           <nav className="hidden md:flex space-x-6 text-sm">
 //             <NavItem to="/" className={({ isActive }) => isActive ? 'text-gray-900 font-medium' : 'text-gray-600'}>Home</NavItem>

@@ -176,7 +176,7 @@
 //             ×
 //           </button>
 //           <div className="mb-6 pr-6">
-//             <h2 className="text-2xl font-serif mb-2">Welcome to GlowHaven</h2>
+//             <h2 className="text-2xl font-serif mb-2">Welcome to GlowPrime</h2>
 //             <p className="text-gray-600 text-sm">
 //               {step === 'phone' && 'Enter your phone number to continue'}
 //               {step === 'otp' && 'Enter the OTP sent to your phone'}
