@@ -13,17 +13,47 @@ import { Navigate } from 'react-router-dom';
 
 const ALL_SLOTS = ['09:00','10:00','11:00','12:00','13:00','14:00','15:00','16:00','17:00','18:00','19:00','20:00'];
 
-const todayIso = () => new Date().toISOString().split('T')[0];
+const toISTIso = (date) => {
+  const options = { timeZone: "Asia/Kolkata", year: "numeric", month: "2-digit", day: "2-digit" };
+  const parts = new Intl.DateTimeFormat("en-CA", options).formatToParts(date);
+
+  const y = parts.find(p => p.type === "year").value;
+  const m = parts.find(p => p.type === "month").value;
+  const d = parts.find(p => p.type === "day").value;
+
+  return `${y}-${m}-${d}`;
+};
+
+
+//const todayIso = () => new Date().toISOString().split('T')[0];
+const todayIso = () => toISTIso(new Date());
+
+
+// const getMonthDays = (year, monthIndex) => {
+//   const daysInMonth = new Date(year, monthIndex + 1, 0).getDate();
+//   const arr = [];
+//   for (let d = 1; d <= daysInMonth; d++) {
+//     const dt = new Date(year, monthIndex, d);
+//     arr.push({ iso: dt.toISOString().split('T')[0], day: d });
+//   }
+//   return arr;
+// };
 
 const getMonthDays = (year, monthIndex) => {
   const daysInMonth = new Date(year, monthIndex + 1, 0).getDate();
   const arr = [];
+
   for (let d = 1; d <= daysInMonth; d++) {
-    const dt = new Date(year, monthIndex, d);
-    arr.push({ iso: dt.toISOString().split('T')[0], day: d });
+    const localDate = new Date(year, monthIndex, d);
+    arr.push({
+      iso: toISTIso(localDate),
+      day: d
+    });
   }
+
   return arr;
 };
+
 
 export default function BookingModal({ service, onClose }) {
   const { user } = useAuth();
@@ -98,7 +128,10 @@ export default function BookingModal({ service, onClose }) {
   }, []);
 
   const findAvailability = (isoDate) => availabilities.find(a => a.date === isoDate);
-  const isPast = (isoDate) => new Date(isoDate) < new Date(todayIso());
+  //const isPast = (isoDate) => new Date(isoDate) < new Date(todayIso());
+
+  const isPast = (isoDate) => isoDate < todayIso();
+
 
   const monthDays = useMemo(() => getMonthDays(visibleYear, visibleMonth), [visibleYear, visibleMonth]);
 
