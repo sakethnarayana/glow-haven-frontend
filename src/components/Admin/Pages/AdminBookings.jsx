@@ -58,27 +58,50 @@ const AdminBookings = () => {
     setFilteredBookings(filtered);
   };
 
-  const handleStatusChange = async (bookingId, status) => {
+  // const handleStatusChange = async (bookingId, status) => {
+  //   try {
+  //     setPageLoading(true);
+  //     await api.put(`/bookings/${bookingId}`, { status });
+  //     setBookings(prev =>
+  //         prev.map(o => (o._id === bookingId ? { ...o, status } : o))
+  //       );
+
+  //     // toast.success(`✅ Booking status updated to ${status}!`);
+  //     // await fetchBookings();
+  //     setShowStatusModal(false);
+  //   } catch (error) {
+  //             console.error("Booking update failed:", error);
+  //             const backendMessage =
+  //               error.response?.data?.message ||
+  //               error.response?.data?.error ||
+  //               "Something went wrong while updating the order";
+  //             toast.error(backendMessage);
+  //           } finally {
+  //           setPageLoading(false);
+  //         }
+  // };
+
+const handleStatusChange = async (bookingId, status) => {
+    if (pageLoading) return;
     try {
       setPageLoading(true);
-      await api.put(`/bookings/${bookingId}`, { status });
+      const res = await api.put(`/bookings/${bookingId}/status`, { status });
+      // update UI immediately
       setBookings(prev =>
-          prev.map(o => (o._id === bookingId ? { ...o, status } : o))
-        );
-
-      // toast.success(`✅ Booking status updated to ${status}!`);
-      // await fetchBookings();
+        prev.map(b => (b._id === bookingId ? { ...b, status: res.data.data.status || status } : b))
+      );
+      toast.success(`✅ Booking status updated to ${status}`);
       setShowStatusModal(false);
     } catch (error) {
-              console.error("Booking update failed:", error);
-              const backendMessage =
-                error.response?.data?.message ||
-                error.response?.data?.error ||
-                "Something went wrong while updating the order";
-              toast.error(backendMessage);
-            } finally {
-            setPageLoading(false);
-          }
+      console.error("Booking update failed:", error);
+      const backendMessage =
+        error.response?.data?.message ||
+        error.response?.data?.error ||
+        "Something went wrong while updating the booking";
+      toast.error(backendMessage);
+    } finally {
+      setPageLoading(false);
+    }
   };
 
   const getStatusColor = (status) => {
@@ -440,27 +463,6 @@ const AdminBookings = () => {
 };
 
 export default AdminBookings;
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 

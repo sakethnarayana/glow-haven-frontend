@@ -155,8 +155,23 @@ const confirmDelete = async () => {
     toast.success(`✅ "${deleteTarget.name}" deleted successfully!`);
     await fetchProducts();
   } catch (err) {
-    toast.error("Failed to delete product");
-  } finally {
+  const data = err.response?.data;
+
+  if (data?.message === "ACTIVE_ORDERS_EXIST") {
+    const b = data.data.breakdown;
+
+    toast.error(
+      `Cannot delete product.\n` +
+      `Pending: ${b.pending}, ` +
+      `Confirmed: ${b.confirmed}, ` +
+      `In Transit: ${b.in_transit}\n\n` +
+      `Please cancel these orders first.`,
+      { duration: 6000 }
+    );
+  } else {
+    toast.error(data?.message || "Failed to delete product");
+  }
+} finally {
     setDeleting(false);
     setShowDeleteModal(false);
     setDeleteTarget(null);

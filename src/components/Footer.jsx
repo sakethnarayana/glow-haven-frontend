@@ -22,7 +22,7 @@ const Footer = () => {
 
         <div>
           <h4 className="font-semibold mb-2">Contact</h4>
-          <p className="text-gray-400 text-sm">📞 +91 8247731232</p>
+          <p className="text-gray-400 text-sm">📞 +91 82477 31232</p>
           <a
             href="https://www.instagram.com/sahasra_skin_hair_laser_clinic?igsh=MTE1amxsNHltZjRneg=="
             target="_blank"

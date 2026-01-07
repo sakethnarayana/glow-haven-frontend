@@ -24,6 +24,10 @@ api.interceptors.request.use((config) => {
 api.interceptors.response.use((res) => res, (err) => {
   // On 401, clear auth and notify app (do not force redirect)
   if (err.response?.status === 401) {
+    const isTempAuth = localStorage.getItem('tempAuth') === 'true';
+    if (isTempAuth) {
+       return Promise.reject(err);
+     }
     localStorage.removeItem('token');
     localStorage.removeItem('user');
     window.dispatchEvent(new Event('app:logout'));
